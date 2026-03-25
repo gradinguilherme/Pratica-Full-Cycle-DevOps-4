@@ -3,14 +3,18 @@ name: CI Pipeline
 on: [push] # Executa a cada push no repositório
 
 jobs:
-  test-job1:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello World Step
-        run: echo "This job tests something"
+      - uses: actions/checkout@v4 # Baixa o código do repositório
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-  test-job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Second Hello Step
-        run: echo "This is the second test job"
+      - name: Install dependencies
+        run: pip install flask
+
+      - name: Run Unit Tests
+        run: python -m unittest -v tests/appTest.py

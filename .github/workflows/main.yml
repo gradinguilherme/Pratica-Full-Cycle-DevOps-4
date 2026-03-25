@@ -14,7 +14,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install flask
+        run: pip install flask coverage
 
-      - name: Run Unit Tests
-        run: python -m unittest -v tests/appTest.py
+      - name: Run Tests with Coverage
+        run: python -m coverage run -m unittest -v tests/appTest.py
+
+      - name: Generate Coverage Report
+        run: python -m coverage report

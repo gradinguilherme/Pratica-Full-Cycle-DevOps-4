@@ -1,0 +1,6 @@
+image:
+  python
+test-job:
+    stage: test
+    script:
+        - echo "This job tests something"
